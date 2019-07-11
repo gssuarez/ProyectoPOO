@@ -6,7 +6,10 @@
 package Menu;
 
 import Entidades.Empleado;
+import Entidades.Planificacion;
 import Entidades.Usuario;
+import Sistema.Sistema;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -41,7 +44,18 @@ public class MenuCajero {
     }
     
     private static void venderBoleto(Empleado empleado){
-        
+        ArrayList<Planificacion> planificaciones= empleado.getAerolinea().getPlanificaciones();
+        String op="";
+        int opcion=-1;
+        while(opcion < planificaciones.size() && opcion< 0){
+            System.out.println("Los aviones disponibles son los siguientes: ");
+            for(int i = 0; i<planificaciones.size();i++){ System.out.println(String.valueOf(i+1)+": "+planificaciones.get(i).getDestino());}
+            System.out.print("Ingrese el numero del destino: ");
+            op = scanner.next();
+            if(Sistema.comprobarDigito(op)){
+                opcion= Integer.parseInt(op) -1;
+            }  
+        }
     }
     
 }

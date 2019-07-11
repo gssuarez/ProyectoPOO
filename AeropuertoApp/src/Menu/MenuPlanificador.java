@@ -65,10 +65,10 @@ public class MenuPlanificador {
         op="";
         while(Planificacion.existeCodigoVuelo(op)){
             System.out.print("Ingrese codigo de vuelo: ");
-            op = scanner.next();
-
-            
+            op = scanner.next();   
         }
+        
+        
     }
     private static void registrarAvion(Empleado empleado){
         String n_serie = "";

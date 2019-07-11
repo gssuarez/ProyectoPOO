@@ -21,6 +21,7 @@ public class Aerolinea {
     private ArrayList<Planificacion> planificaciones;
 
     public Aerolinea(String nombre) {
+        planificaciones= new ArrayList<>();
         aviones= new ArrayList<>();
         this.nombre = nombre;
         id=contador;
@@ -28,11 +29,22 @@ public class Aerolinea {
     }
     
     public Aerolinea(String nombre,int id) {
+        planificaciones= new ArrayList<>();
         aviones= new ArrayList<>();
         this.nombre = nombre;
         this.id =id;
         contador= id;
     }
+
+    public ArrayList<Planificacion> getPlanificaciones() {
+        return planificaciones;
+    }
+
+    public void setPlanificaciones(ArrayList<Planificacion> planificaciones) {
+        this.planificaciones = planificaciones;
+    }
+    
+
     
     public static boolean comprobarAerolinea(String aero){
         boolean a= false;

@@ -9,6 +9,8 @@ import Entidades.Empleado;
 import Entidades.Planificacion;
 import Entidades.Usuario;
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,8 +36,10 @@ public class Sistema {
         cargarAerolineas();
         cargarUsuarios();
         cargarAviones();
+        Planificacion p = new Planificacion("#123235F", "#EDEA", LocalDateTime.of(2019, Month.MARCH, 24, 8, 0),
+                LocalDateTime.of(2019, Month.MARCH, 24, 8, 0),  "GYE/Guayaquil","UIO/Quito", 200, 300);
+        System.out.println(aerolineas.get(0).getPlanificaciones().add(p));
     }
-
     public static Usuario obtenerTipoUsuario(String user, String password) {
         Usuario u=null;
         for(Usuario usuario: usuarios){
