@@ -65,12 +65,13 @@ public class MenuCajero {
             for(int i = 0; i<planificaciones2.size();i++){ 
                 System.out.println(String.valueOf(i+1)+".- Fecha: "+ planificaciones2.get(i).getDepartute_time().toString() +
                        "|Asientos normales: "+planificaciones2.get(i).getAsientos_norm_clase() +  "|Asientos primera clase: "+planificaciones2.get(i).getAsientos_prim_clase());}
-            System.out.print("Ingrese el numero del vuelo: ");
+            System.out.print("Ingrese el opcion del vuelo escogido: ");
             op = scanner.next();
             if(Sistema.comprobarDigito(op)){
                 opcion= Integer.parseInt(op) -1;
             }  
             Planificacion reserva= planificaciones2.get(opcion);
+            registroBoleto(reserva);
             
         }
     }
@@ -87,8 +88,14 @@ public class MenuCajero {
     
     private static void registroBoleto(Planificacion reserva){
         String opcion = "";
-        while(opcion!="1" || opcion!="2"){
+        while(!opcion.equals("1") || !opcion.equals("2")){
             System.out.print("Tipos de entrada para comprar\n1.-Primera clase\n2.-Segunda clase\nIngresar opcion: ");
+        }
+        if (opcion.equals("1")){
+            
+        }
+        else if (opcion.equals("2")){
+        
         }
     }
     
