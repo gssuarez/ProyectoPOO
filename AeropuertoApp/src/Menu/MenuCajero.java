@@ -5,10 +5,16 @@
  */
 package Menu;
 
+import Entidades.Asiento;
+import Entidades.Boleto;
+import Entidades.Cliente;
 import Entidades.Empleado;
 import Entidades.Planificacion;
+import Entidades.Reserva;
 import Entidades.Usuario;
 import Sistema.Sistema;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -64,17 +70,70 @@ public class MenuCajero {
             System.out.println("Se tienen los siguientes vuelos: ");
             for(int i = 0; i<planificaciones2.size();i++){ 
                 System.out.println(String.valueOf(i+1)+".- Fecha: "+ planificaciones2.get(i).getDepartute_time().toString() +
-                       "|Asientos normales: "+planificaciones2.get(i).getAsientos_norm_clase() +  "|Asientos primera clase: "+planificaciones2.get(i).getAsientos_prim_clase());}
+                       " | Asientos normales: "+planificaciones2.get(i).getAsientos_norm_clase().getDisponibles() +  " | Asientos primera clase: "+planificaciones2.get(i).getAsientos_prim_clase().getDisponibles());}
             System.out.print("Ingrese el opcion del vuelo escogido: ");
             op = scanner.next();
             if(Sistema.comprobarDigito(op)){
                 opcion= Integer.parseInt(op) -1;
-            }  
-            Planificacion reserva= planificaciones2.get(opcion);
-            registroBoleto(reserva);
-            
+            }         
         }
-    }
+        Planificacion reserva= planificaciones2.get(opcion);
+        op = "";
+        Asiento asiento = null;
+        while(!op.equals("1") && !op.equals("2")){
+            System.out.print("Tipos de entrada para comprar\n1.-Primera clase\n2.-Segunda clase\nIngresar opcion: ");
+            op = scanner.next();
+        }
+        if (op.equals("1")){
+            asiento = reserva.getAsientos_prim_clase();  
+        }    
+        else if (op.equals("2")){
+            asiento = reserva.getAsientos_norm_clase();  
+        
+        }
+        System.out.printf("Existen %d asiento disponibles\n",asiento.getDisponibles());
+            int num=1000;
+            int boletos = 0;
+            while(num >0 && num > asiento.getDisponibles()){
+                System.out.print("Ingrese cantidad de boletos a comprar: ");
+                op  = scanner.next();
+                if(Sistema.comprobarDigito(op )){
+                   num = Integer.parseInt(op) -1;
+                }    
+            }
+            op="";
+            String cliente;
+            Cliente client;
+            while(!op.equals("SI") && !op.equals("NO") && !op.equals("SALIR")){
+                System.out.print("Tiene cuenta de cliente(SI / NO/ SALIR SI QUIERE ABORAR OPERACION): ");
+                op = scanner.next().toUpperCase();
+            }
+            if(op.equals("SI")){
+                cliente ="";
+                while(Cliente.existeCliente(cliente) && !cliente.equals("SALIR")){
+                    System.out.println("Ingrese cedula(SALIR SI QUIERE ABORAR OPERACION): ");
+                    cliente = scanner.next().toUpperCase();}
+                client = Cliente.devolverCliente(cliente);
+            }
+            else{ 
+                client = Cliente.crearCliente();
+            }
+            int total = boletos * asiento.getPrecio();
+            System.out.printf("El total es: %d\n",total);
+            op="";
+            while(!op.equals("SI") && !op.equals("NO")){
+                System.out.print("Desea aceptar la transaccion(SI / NO): ");
+                op = scanner.next().toUpperCase();
+            }
+            if (op.equals("SI")){
+                
+                Reserva r = new Reserva(reserva.getCod_vuelo(), LocalDate.now(),empleado.getUsuario(),total);
+                while(boletos!=0){
+                    //r.getBoletos().add(new Boleto(client));
+                }
+                
+            }
+        }
     
     private static ArrayList<Planificacion> obtenerArrayDestino (ArrayList<Planificacion> p, String destino){
         ArrayList<Planificacion> planificacion =  new ArrayList<>();
@@ -86,17 +145,7 @@ public class MenuCajero {
         return planificacion;
     }
     
-    private static void registroBoleto(Planificacion reserva){
-        String opcion = "";
-        while(!opcion.equals("1") || !opcion.equals("2")){
-            System.out.print("Tipos de entrada para comprar\n1.-Primera clase\n2.-Segunda clase\nIngresar opcion: ");
-        }
-        if (opcion.equals("1")){
-            
-        }
-        else if (opcion.equals("2")){
-        
-        }
-    }
+    
+    
     
 }

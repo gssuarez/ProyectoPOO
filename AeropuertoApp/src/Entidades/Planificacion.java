@@ -7,6 +7,7 @@ package Entidades;
 
 import Sistema.Sistema;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,18 +23,22 @@ public class Planificacion {
     private String IATA_arribo;
     private String IATA_salida;
     private String destino;
-    private int asientos_prim_clase;
-    private int asientos_norm_clase;
+    private Asiento asientos_prim_clase;
+    private Asiento asientos_norm_clase;
+    private int prim_clase;
+    private int norm_clase;
+    private ArrayList<Reserva> reservas;
 
     public Planificacion(String avion, String cod_vuelo, LocalDateTime boarding_time, LocalDateTime departute_time, String IATA_arribo, String IATA_salida, int asientos_prim_clase, int asientos_norm_clase) {
+        reservas= new ArrayList<>();
         this.avion = avion;
         this.cod_vuelo = cod_vuelo;
         this.boarding_time = boarding_time;
         this.departute_time = departute_time;
         this.IATA_arribo = IATA_arribo;
         this.IATA_salida = IATA_salida;
-        this.asientos_prim_clase = asientos_prim_clase;
-        this.asientos_norm_clase = asientos_norm_clase;
+        this.asientos_prim_clase = new Asiento(asientos_prim_clase);
+        this.asientos_norm_clase = new Asiento(asientos_norm_clase);
         this.destino = IATA_arribo.split("/")[1];
     }
     
@@ -116,19 +121,19 @@ public class Planificacion {
         this.IATA_salida = IATA_salida;
     }
 
-    public int getAsientos_prim_clase() {
+    public Asiento getAsientos_prim_clase() {
         return asientos_prim_clase;
     }
 
-    public void setAsientos_prim_clase(int asientos_prim_clase) {
+    public void setAsientos_prim_clase(Asiento asientos_prim_clase) {
         this.asientos_prim_clase = asientos_prim_clase;
     }
 
-    public int getAsientos_norm_clase() {
+    public Asiento getAsientos_norm_clase() {
         return asientos_norm_clase;
     }
 
-    public void setAsientos_norm_clase(int asientos_norm_clase) {
+    public void setAsientos_norm_clase(Asiento asientos_norm_clase) {
         this.asientos_norm_clase = asientos_norm_clase;
     }
     

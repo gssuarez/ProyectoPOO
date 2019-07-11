@@ -50,7 +50,7 @@ public class MenuAdministrador {
     
     private static void crearUsuario(){
         String cedula="0000000000";
-        while(ingresarCedula(cedula)){
+        while(Sistema.ingresarCedula(cedula)){
             System.out.print("Ingrese cedula: ");
             cedula = scanner.next();
         }
@@ -91,18 +91,7 @@ public class MenuAdministrador {
         }
         Sistema.aerolineas.add(new Aerolinea(aerolinea));
     }
-    private static boolean ingresarCedula(String cedula){
-        boolean control= true;
-        if(Sistema.verificarCedula(cedula)){
-            control = false;
-        }
-        for(Usuario usuario: Sistema.usuarios){
-            if(usuario.getCedula().equals(cedula)){
-                control = true;
-            }
-        }
-        return control;
-    }
+    
     
     private static boolean verificarPassword(String password){
         boolean control= false;

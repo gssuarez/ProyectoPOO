@@ -5,6 +5,7 @@ import Archivos.Archivo;
 import Archivos.Encriptacion;
 import Entidades.Aerolinea;
 import Entidades.Avion;
+import Entidades.Cliente;
 import Entidades.Empleado;
 import Entidades.Planificacion;
 import Entidades.Usuario;
@@ -31,6 +32,7 @@ public class Sistema {
     public static ArrayList<Avion> aviones =new ArrayList<>();
     public static ArrayList<Aerolinea> aerolineas = new ArrayList<>();
     public static ArrayList<Planificacion> planificaciones = new ArrayList<>();
+    public static ArrayList<Cliente> clientes = new ArrayList<>();
 
 
     public static void cargarDatos() throws UnsupportedEncodingException{
@@ -39,7 +41,7 @@ public class Sistema {
         cargarAviones();
         Planificacion p = new Planificacion("#123235F", "#EDEA", LocalDateTime.of(2019, Month.MARCH, 24, 8, 0),
                 LocalDateTime.of(2019, Month.MARCH, 24, 8, 0),  "GYE/Guayaquil","UIO/Quito", 200, 300);
-        System.out.println(aerolineas.get(0).getPlanificaciones().add(p));
+       aerolineas.get(0).getPlanificaciones().add(p);
     }
     public static Usuario obtenerTipoUsuario(String user, String password) {
         Usuario u=null;
@@ -49,6 +51,19 @@ public class Sistema {
             } 
         }
         return u;
+    }
+    
+        public static boolean ingresarCedula(String cedula){
+        boolean control= true;
+        if(Sistema.verificarCedula(cedula)){
+            control = false;
+        }
+        for(Usuario usuario: Sistema.usuarios){
+            if(usuario.getCedula().equals(cedula)){
+                control = true;
+            }
+        }
+        return control;
     }
     
     public static boolean verificarCedula(String c){
