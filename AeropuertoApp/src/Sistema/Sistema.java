@@ -39,6 +39,7 @@ public class Sistema {
         cargarAerolineas();
         cargarUsuarios();
         cargarAviones();
+        cargarClientes();
         Planificacion p = new Planificacion("#123235F", "#EDEA", LocalDateTime.of(2019, Month.MARCH, 24, 8, 0),
                 LocalDateTime.of(2019, Month.MARCH, 24, 8, 0),  "GYE/Guayaquil","UIO/Quito", 200, 300,120,60);
        aerolineas.get(0).getPlanificaciones().add(p);
@@ -53,7 +54,7 @@ public class Sistema {
         return u;
     }
     
-        public static boolean ingresarCedula(String cedula){
+    public static boolean ingresarCedula(String cedula){
         boolean control= true;
         if(Sistema.verificarCedula(cedula)){
             control = false;
@@ -140,6 +141,12 @@ public class Sistema {
             }
         }
     }
+    private static void cargarClientes(){
+        for(String s: Archivo.clientes){
+            String [] st = s.split(",");
+            clientes.add(new Cliente(st[0],st[1],st[2],Integer.parseInt(st[3])));
+        }
+    }
     
     
     public static void guardarDatos(){
@@ -173,6 +180,15 @@ public class Sistema {
         }
         Archivo.guardarArchivo(total, Archivo.direccionAerolinea);
     }
+    private static void guardarCliente(){
+        ArrayList<String> total = new ArrayList<>();
+        for(Cliente cliente : clientes){
+            String data = cliente.getCedula() + "," + cliente.getNombre() + "," + cliente.getApellido() + "," + String.valueOf(cliente.getAñoNacimiento()) ;
+            total.add(data);
+        }
+        Archivo.guardarArchivo(total, Archivo.direccionCliente);
+    }
+    
     private static void guardarAvion(){
         ArrayList<String> total = new ArrayList<>();
         for(Avion avion : aviones){

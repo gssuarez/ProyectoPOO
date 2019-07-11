@@ -19,15 +19,16 @@ public class Reserva {
     private String user_empleado; //codigo empleado
     private ArrayList<Boleto> boletos;
     private double total;
+    private double cantidadPasajeros;
 
-    public Reserva(String cod_vuelo, LocalDate fecha, String user_empleado, double total) {
+    public Reserva(String cod_vuelo, LocalDate fecha, String user_empleado, double total, int cantidadPasajeros) {
         boletos = new ArrayList<>();
         this.cod_vuelo = cod_vuelo;
         this.fecha = fecha;
         this.user_empleado = user_empleado;
         this.total = total;
+        this.cantidadPasajeros = cantidadPasajeros;
     }
-
     public String getCod_vuelo() {
         return cod_vuelo;
     }

@@ -72,5 +72,16 @@ public class Cliente extends Persona {
         this.añoNacimiento = añoNacimiento;
     }
     
-    
+    public static boolean ingresarCedula(String cedula){
+        boolean control= true;
+        if(Sistema.verificarCedula(cedula)){
+            control = false;
+        }
+        for(Cliente usuario: Sistema.clientes){
+            if(usuario.getCedula().equals(cedula)){
+                control = true;
+            }
+        }
+        return control;
+    }
 }
