@@ -32,6 +32,7 @@ public class Sistema {
     public static ArrayList<Aerolinea> aerolineas = new ArrayList<>();
     public static ArrayList<Planificacion> planificaciones = new ArrayList<>();
 
+
     public static void cargarDatos() throws UnsupportedEncodingException{
         cargarAerolineas();
         cargarUsuarios();
