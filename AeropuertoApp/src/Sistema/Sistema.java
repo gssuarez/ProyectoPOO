@@ -40,7 +40,7 @@ public class Sistema {
         cargarUsuarios();
         cargarAviones();
         Planificacion p = new Planificacion("#123235F", "#EDEA", LocalDateTime.of(2019, Month.MARCH, 24, 8, 0),
-                LocalDateTime.of(2019, Month.MARCH, 24, 8, 0),  "GYE/Guayaquil","UIO/Quito", 200, 300);
+                LocalDateTime.of(2019, Month.MARCH, 24, 8, 0),  "GYE/Guayaquil","UIO/Quito", 200, 300,120,60);
        aerolineas.get(0).getPlanificaciones().add(p);
     }
     public static Usuario obtenerTipoUsuario(String user, String password) {

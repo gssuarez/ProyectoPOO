@@ -14,4 +14,11 @@ import java.time.LocalDate;
 public class Boleto {
     
      private Cliente cliente;
+     private int puesto;
+
+    public Boleto(Cliente cliente, int puesto) {
+        this.cliente = cliente;
+        this.puesto = puesto;
+    }
+     
 }

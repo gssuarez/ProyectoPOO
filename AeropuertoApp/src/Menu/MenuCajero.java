@@ -69,8 +69,8 @@ public class MenuCajero {
         while(opcion < planificaciones2.size() && opcion< 0){
             System.out.println("Se tienen los siguientes vuelos: ");
             for(int i = 0; i<planificaciones2.size();i++){ 
-                System.out.println(String.valueOf(i+1)+".- Fecha: "+ planificaciones2.get(i).getDepartute_time().toString() +
-                       " | Asientos normales: "+planificaciones2.get(i).getAsientos_norm_clase().getDisponibles() +  " | Asientos primera clase: "+planificaciones2.get(i).getAsientos_prim_clase().getDisponibles());}
+                System.out.println(String.valueOf(i+1)+".- Fecha: "+ planificaciones2.get(i).getDepartute_time().toString() 
+           +  " | Asientos primera clase: "+planificaciones2.get(i).getAsientos_prim_clase().getDisponibles() + " | Asientos normales: "+planificaciones2.get(i).getAsientos_norm_clase().getDisponibles());}
             System.out.print("Ingrese el opcion del vuelo escogido: ");
             op = scanner.next();
             if(Sistema.comprobarDigito(op)){
@@ -92,13 +92,12 @@ public class MenuCajero {
         
         }
         System.out.printf("Existen %d asiento disponibles\n",asiento.getDisponibles());
-            int num=1000;
-            int boletos = 0;
-            while(num >0 && num > asiento.getDisponibles()){
+            int boletos=1000;
+            while(boletos >0 && boletos > asiento.getDisponibles()){
                 System.out.print("Ingrese cantidad de boletos a comprar: ");
                 op  = scanner.next();
                 if(Sistema.comprobarDigito(op )){
-                   num = Integer.parseInt(op) -1;
+                   boletos = Integer.parseInt(op);
                 }    
             }
             op="";
@@ -118,18 +117,22 @@ public class MenuCajero {
             else{ 
                 client = Cliente.crearCliente();
             }
-            int total = boletos * asiento.getPrecio();
-            System.out.printf("El total es: %d\n",total);
+            int total = boletos * asiento.getPrecio() ;
+            if(LocalDate.now().getDayOfYear() - client.getAñoNacimiento() < 2){
+                System.out.println("Usted ha aplicado a un descuento de edad");
+                total=total/2;
+            }
+            System.out.printf("El total es: %d\n dolares",total);
             op="";
             while(!op.equals("SI") && !op.equals("NO")){
                 System.out.print("Desea aceptar la transaccion(SI / NO): ");
                 op = scanner.next().toUpperCase();
             }
-            if (op.equals("SI")){
-                
+            if (op.equals("SI")){    
                 Reserva r = new Reserva(reserva.getCod_vuelo(), LocalDate.now(),empleado.getUsuario(),total);
                 while(boletos!=0){
-                    //r.getBoletos().add(new Boleto(client));
+                    r.getBoletos().add(new Boleto(client,asiento.generarPuesto()));
+                    boletos--;
                 }
                 
             }

@@ -13,8 +13,11 @@ import java.util.Scanner;
  */
 public class Cliente extends Persona {
     
-    public Cliente(String cedula, String nombre, String apellido) {
+    int añoNacimiento;
+    
+    public Cliente(String cedula, String nombre, String apellido, int añoNacimiento) {
         super(cedula, nombre, apellido);
+        this.añoNacimiento = añoNacimiento;
     }
     
     public static boolean existeCliente(String cedula){
@@ -40,8 +43,16 @@ public class Cliente extends Persona {
         String apellido = "";
         System.out.print("Ingrese apellido: ");
         apellido = scanner.next().toUpperCase();
-        String password = "";
-        return new Cliente(cedula,nombre,apellido);
+        int año=0;
+        String op;
+        while(año<1900 || año >2020){
+            System.out.print("Ingrese su año de nacimiento: ");
+            op = scanner.next();
+             if(Sistema.comprobarDigito(op)){
+                año= Integer.parseInt(op);
+            }  
+        }
+        return new Cliente(cedula,nombre,apellido,año);
     }
     
     public static Cliente devolverCliente(String c){
@@ -52,4 +63,14 @@ public class Cliente extends Persona {
         }
         return null;
     }
+
+    public int getAñoNacimiento() {
+        return añoNacimiento;
+    }
+
+    public void setAñoNacimiento(int añoNacimiento) {
+        this.añoNacimiento = añoNacimiento;
+    }
+    
+    
 }

@@ -44,8 +44,6 @@ public class Aerolinea {
         this.planificaciones = planificaciones;
     }
     
-
-    
     public static boolean comprobarAerolinea(String aero){
         boolean a= false;
         for(Aerolinea aerolinea: Sistema.aerolineas){

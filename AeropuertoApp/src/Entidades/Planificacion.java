@@ -29,7 +29,7 @@ public class Planificacion {
     private int norm_clase;
     private ArrayList<Reserva> reservas;
 
-    public Planificacion(String avion, String cod_vuelo, LocalDateTime boarding_time, LocalDateTime departute_time, String IATA_arribo, String IATA_salida, int asientos_prim_clase, int asientos_norm_clase) {
+    public Planificacion(String avion, String cod_vuelo, LocalDateTime boarding_time, LocalDateTime departute_time, String IATA_arribo, String IATA_salida, int asientos_prim_clase, int asientos_norm_clase,int prim_clase, int norm_clase) {
         reservas= new ArrayList<>();
         this.avion = avion;
         this.cod_vuelo = cod_vuelo;
@@ -37,8 +37,8 @@ public class Planificacion {
         this.departute_time = departute_time;
         this.IATA_arribo = IATA_arribo;
         this.IATA_salida = IATA_salida;
-        this.asientos_prim_clase = new Asiento(asientos_prim_clase);
-        this.asientos_norm_clase = new Asiento(asientos_norm_clase);
+        this.asientos_prim_clase = new Asiento(asientos_prim_clase, prim_clase);
+        this.asientos_norm_clase = new Asiento(asientos_norm_clase, norm_clase);
         this.destino = IATA_arribo.split("/")[1];
     }
     

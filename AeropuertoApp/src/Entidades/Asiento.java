@@ -11,14 +11,18 @@ package Entidades;
  */
 public class Asiento {
     
-    private int contador;
     private int disponibles;
-    private int ocupados;
     private int precio;
     
-    public Asiento(int asientos){
+    public Asiento(int asientos,int precio){
         disponibles=asientos;
+        this.precio = precio;
         
+    }
+    public int generarPuesto(){
+        disponibles --;
+        int puesto= disponibles;
+        return disponibles;
     }
 
     public int getDisponibles() {
@@ -29,13 +33,6 @@ public class Asiento {
         this.disponibles = disponibles;
     }
 
-    public int getOcupados() {
-        return ocupados;
-    }
-
-    public void setOcupados(int ocupados) {
-        this.ocupados = ocupados;
-    }
 
     public int getPrecio() {
         return precio;
