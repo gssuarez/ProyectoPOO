@@ -117,7 +117,7 @@ public class MenuCajero {
             else{ 
                 client = Cliente.crearCliente();
             }
-            int total = boletos * asiento.getPrecio() ;
+            double total = boletos * asiento.getPrecio() ;
             if(LocalDate.now().getDayOfYear() - client.getAñoNacimiento() < 2){
                 System.out.println("Usted ha aplicado a un descuento de edad");
                 total=total/2;

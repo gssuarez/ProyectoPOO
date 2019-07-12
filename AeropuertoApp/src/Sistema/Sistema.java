@@ -4,6 +4,7 @@ package Sistema;
 import Archivos.Archivo;
 import Archivos.Encriptacion;
 import Entidades.Aerolinea;
+import Entidades.Asiento;
 import Entidades.Avion;
 import Entidades.Cliente;
 import Entidades.Empleado;
@@ -33,6 +34,7 @@ public class Sistema {
     public static ArrayList<Aerolinea> aerolineas = new ArrayList<>();
     public static ArrayList<Planificacion> planificaciones = new ArrayList<>();
     public static ArrayList<Cliente> clientes = new ArrayList<>();
+    public static ArrayList<Asiento> asientos =  new ArrayList<>();
 
 
     public static void cargarDatos() throws UnsupportedEncodingException{
@@ -43,6 +45,9 @@ public class Sistema {
         Planificacion p = new Planificacion("#123235F", "#EDEA", LocalDateTime.of(2019, Month.MARCH, 24, 8, 0),
                 LocalDateTime.of(2019, Month.MARCH, 24, 8, 0),  "GYE/Guayaquil","UIO/Quito", 200, 300,120,60);
        aerolineas.get(0).getPlanificaciones().add(p);
+       planificaciones.add(p);
+       cargarAsientos();
+       
     }
     public static Usuario obtenerTipoUsuario(String user, String password) {
         Usuario u=null;
@@ -147,6 +152,21 @@ public class Sistema {
             clientes.add(new Cliente(st[0],st[1],st[2],Integer.parseInt(st[3])));
         }
     }
+    private static void cargarAsientos(){
+         for(String asiento: Archivo.asientos){
+             String [] st = asiento.split(",");
+             asientos.add(new Asiento(st[0],Integer.parseInt(st[1]),Double.parseDouble(st[2]),Asiento.obtenerTipo(st[3])));
+         }
+         for (Asiento asiento: asientos){
+             Planificacion p = Planificacion.retornarPlanificacion(asiento.getCod_vuelo());
+             if(asiento.getTipo().equals(Asiento.Tipo.PRIMERA_CLASE)){
+                 p.setAsientos_prim_clase(asiento);
+             }
+             else if(asiento.getTipo().equals(Asiento.Tipo.NORMAL_CLASE)){
+                 p.setAsientos_norm_clase(asiento);
+             }
+         }
+    }
     
     
     public static void guardarDatos(){
@@ -157,6 +177,7 @@ public class Sistema {
         }
         guardarAerolinea();
         guardarAvion();
+        guardarCliente();
     }
     
     private static void guardarUsuario() throws UnsupportedEncodingException{

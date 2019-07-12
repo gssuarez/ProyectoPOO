@@ -5,6 +5,7 @@
  */
 package Archivos;
 
+import Entidades.Asiento;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,10 +27,12 @@ public class Archivo {
     public final static String direccionAerolinea = "src/Archivos/aerolineas.txt";
     public final static String direccionAvion = "src/Archivos/aviones.txt";
     public final static String direccionCliente = "src/Archivos/clientes.txt";
+    public final static String direccionAsiento = "src/Archivos/asientos.txt";
     public static ArrayList<String> usuarios = Archivo.leerArchivo(direccionUsuario);
     public static ArrayList<String> aerolineas = Archivo.leerArchivo(direccionAerolinea);
     public static ArrayList<String> aviones = Archivo.leerArchivo(direccionAvion);
     public static ArrayList<String> clientes = Archivo.leerArchivo(direccionCliente);
+    public static ArrayList<String> asientos = Archivo.leerArchivo(direccionAsiento);
 
 
     

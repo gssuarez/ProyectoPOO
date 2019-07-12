@@ -9,14 +9,22 @@ package Entidades;
  *
  * @author Homar Herrera
  */
+
+
 public class Asiento {
     
-    private int disponibles;
-    private int precio;
+    public enum Tipo{PRIMERA_CLASE,NORMAL_CLASE;}
     
-    public Asiento(int asientos,int precio){
+    private String cod_vuelo;
+    private int disponibles;
+    private double precio;
+    private Tipo tipo;
+    
+    public Asiento(String cod_vuelo,int asientos,double precio, Tipo tipo){
         disponibles=asientos;
         this.precio = precio;
+        this.tipo = tipo;
+        this.cod_vuelo = cod_vuelo;
         
     }
     public int generarPuesto(){
@@ -33,13 +41,46 @@ public class Asiento {
         this.disponibles = disponibles;
     }
 
-
-    public int getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    
+    public String getCod_vuelo() {
+        return cod_vuelo;
+    }
+
+    public void setCod_vuelo(String cod_vuelo) {
+        this.cod_vuelo = cod_vuelo;
+    }
+
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
+    }
+
+    
+    
+    
     public void setPrecio(int precio) {
         this.precio = precio;
     }
-    
+     public static Tipo obtenerTipo(String c){
+        Tipo tipo = null;
+        if(c.equals("PRIMERA_CLASE")){
+            return tipo = Tipo.PRIMERA_CLASE;
+        }
+        else if(c.equals("PRIMERA_CLASE")){
+             return tipo= Tipo.PRIMERA_CLASE;
+         }
+        return tipo;
+         
+     }
 }

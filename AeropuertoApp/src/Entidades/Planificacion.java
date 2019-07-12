@@ -37,8 +37,8 @@ public class Planificacion {
         this.departute_time = departute_time;
         this.IATA_arribo = IATA_arribo;
         this.IATA_salida = IATA_salida;
-        this.asientos_prim_clase = new Asiento(asientos_prim_clase, prim_clase);
-        this.asientos_norm_clase = new Asiento(asientos_norm_clase, norm_clase);
+        this.asientos_prim_clase = new Asiento(cod_vuelo,asientos_prim_clase, prim_clase,Asiento.Tipo.PRIMERA_CLASE);
+        this.asientos_norm_clase = new Asiento(cod_vuelo,asientos_norm_clase, norm_clase,Asiento.Tipo.NORMAL_CLASE);
         this.destino = IATA_arribo.split("/")[1];
     }
     
@@ -137,4 +137,13 @@ public class Planificacion {
         this.asientos_norm_clase = asientos_norm_clase;
     }
     
+    public static Planificacion retornarPlanificacion(String codigo){
+        Planificacion p = null;
+        for(Planificacion plan: Sistema.planificaciones){
+            if(plan.cod_vuelo.equals(codigo)){
+                p=plan;
+            }
+        }
+        return p;
+    }
 }
