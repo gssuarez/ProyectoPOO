@@ -77,8 +77,8 @@ public class Asiento {
         if(c.equals("PRIMERA_CLASE")){
             return tipo = Tipo.PRIMERA_CLASE;
         }
-        else if(c.equals("PRIMERA_CLASE")){
-             return tipo= Tipo.PRIMERA_CLASE;
+        else if(c.equals("NORMAL_CLASE")){
+             return tipo= Tipo.NORMAL_CLASE;
          }
         return tipo;
          

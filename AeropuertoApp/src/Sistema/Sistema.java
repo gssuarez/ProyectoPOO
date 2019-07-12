@@ -111,8 +111,6 @@ public class Sistema {
         }
         return control;
     }
-    
-    
     private static void cargarUsuarios() throws UnsupportedEncodingException{
         for(String s: Archivo.usuarios){
             String [] st = s.split(",");
@@ -178,6 +176,8 @@ public class Sistema {
         guardarAerolinea();
         guardarAvion();
         guardarCliente();
+        guardarAsiento();
+        guardarPlanificacion();
     }
     
     private static void guardarUsuario() throws UnsupportedEncodingException{
@@ -201,14 +201,6 @@ public class Sistema {
         }
         Archivo.guardarArchivo(total, Archivo.direccionAerolinea);
     }
-    private static void guardarCliente(){
-        ArrayList<String> total = new ArrayList<>();
-        for(Cliente cliente : clientes){
-            String data = cliente.getCedula() + "," + cliente.getNombre() + "," + cliente.getApellido() + "," + String.valueOf(cliente.getAñoNacimiento()) ;
-            total.add(data);
-        }
-        Archivo.guardarArchivo(total, Archivo.direccionCliente);
-    }
     
     private static void guardarAvion(){
         ArrayList<String> total = new ArrayList<>();
@@ -218,5 +210,39 @@ public class Sistema {
             total.add(data);
         }
         Archivo.guardarArchivo(total, Archivo.direccionAvion);
+    }
+    
+    private static void guardarCliente(){
+        ArrayList<String> total = new ArrayList<>();
+        for(Cliente cliente : clientes){
+            String data = cliente.getCedula() + "," + cliente.getNombre() + "," + cliente.getApellido() + "," + String.valueOf(cliente.getAñoNacimiento()) ;
+            total.add(data);
+        }
+        Archivo.guardarArchivo(total, Archivo.direccionCliente);
+    }
+    private static void guardarAsiento(){
+         ArrayList<String> total = new ArrayList<>();
+         for(Asiento asiento: asientos){
+             String tipo = "";
+             if(asiento.getTipo().equals(Asiento.Tipo.PRIMERA_CLASE)){
+                 tipo = "PRIMERA_CLASE";
+             }else{ tipo = "NORMAL_CLASE" ;
+             String data = asiento.getCod_vuelo() + "," + String.valueOf(asiento.getDisponibles()) + "," + String.valueOf(asiento.getPrecio()) + "," + tipo;
+             total.add(data);
+            }
+             Archivo.guardarArchivo(total, Archivo.direccionCliente);
+        }
+    }
+   
+    private static void guardarPlanificacion(){
+        ArrayList<String> total = new ArrayList<>();
+        // String IATA_arribo, String IATA_salida, int asientos_prim_clase, int asientos_norm_clase,int prim_clase, int norm_clase) {
+
+         for(Planificacion p: planificaciones){
+             String data= p.getAvion() + "," + p.getCod_vuelo() + "," + p.getBoarding_time().toString() + "," + p.getDepartute_time().toString() + "," +
+                     p.getIATA_arribo() + "," + p.getIATA_salida();
+             total.add(data);
+         }
+        Archivo.guardarArchivo(total, Archivo.direccionPlanificacion);
     }
 }

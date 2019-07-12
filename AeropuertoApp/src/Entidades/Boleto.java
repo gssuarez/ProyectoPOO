@@ -15,10 +15,12 @@ public class Boleto {
     
      private Cliente cliente;
      private int puesto;
+     private String cod_vuelo;
 
-    public Boleto(Cliente cliente, int puesto) {
+    public Boleto(Cliente cliente, int puesto, String cod_vuelo) {
         this.cliente = cliente;
         this.puesto = puesto;
+        this.cod_vuelo = cod_vuelo;
     }
      
 }

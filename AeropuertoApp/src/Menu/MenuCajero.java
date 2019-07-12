@@ -131,7 +131,7 @@ public class MenuCajero {
             if (op.equals("SI")){    
                 Reserva r = new Reserva(reserva.getCod_vuelo(), LocalDate.now(),empleado.getUsuario(),total, boletos);
                 while(boletos!=0){
-                    r.getBoletos().add(new Boleto(client,asiento.generarPuesto()));
+                    r.getBoletos().add(new Boleto(client,asiento.generarPuesto(),reserva.getCod_vuelo()));
                     boletos--;
                 }
                 

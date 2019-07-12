@@ -28,11 +28,13 @@ public class Archivo {
     public final static String direccionAvion = "src/Archivos/aviones.txt";
     public final static String direccionCliente = "src/Archivos/clientes.txt";
     public final static String direccionAsiento = "src/Archivos/asientos.txt";
+    public final static String direccionPlanificacion = "src/Archivos/planificaciones.txt";
     public static ArrayList<String> usuarios = Archivo.leerArchivo(direccionUsuario);
     public static ArrayList<String> aerolineas = Archivo.leerArchivo(direccionAerolinea);
     public static ArrayList<String> aviones = Archivo.leerArchivo(direccionAvion);
     public static ArrayList<String> clientes = Archivo.leerArchivo(direccionCliente);
     public static ArrayList<String> asientos = Archivo.leerArchivo(direccionAsiento);
+    public static ArrayList<String> planificaciones = Archivo.leerArchivo(direccionPlanificacion);
 
 
     
