@@ -6,6 +6,7 @@ import Archivos.Encriptacion;
 import Entidades.Aerolinea;
 import Entidades.Asiento;
 import Entidades.Avion;
+import Entidades.Boleto;
 import Entidades.Cliente;
 import Entidades.Empleado;
 import Entidades.Planificacion;
@@ -38,6 +39,7 @@ public class Sistema {
     public static ArrayList<Cliente> clientes = new ArrayList<>();
     public static ArrayList<Asiento> asientos =  new ArrayList<>();
     public static ArrayList<Reserva> reservas =  new ArrayList<>();
+    public static ArrayList<Boleto> boletos =  new ArrayList<>();
 
 
     public static void cargarDatos() throws UnsupportedEncodingException{
